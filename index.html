@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>iDowngrader</title>
+	<script>
+		var stylesheet = document.createElement('link');
+		stylesheet.rel = 'stylesheet';
+		if(/iPhone|iPod|iPad|Phone|Android|iOS|Blackberry|Mobile/i.test(navigator.userAgent)) {
+			stylesheet.href = 'mobile.css?'+new Date().getTime();
+		} else {
+			stylesheet.href = 'desktop.css?'+new Date().getTime();
+		}
+		var icons = [];
+		var temp = document.createElement('link');
+		temp.rel = 'apple-touch-icon';
+		temp.href = 'icon.png?'+new Date().getTime();
+		icons.push(temp);
+		var temp = document.createElement('link');
+		temp.rel = 'shortcut icon';
+		temp.href = 'icon.png?'+new Date().getTime();
+		icons.push(temp);
+		var temp = document.createElement('link');
+		temp.rel = 'favicon';
+		temp.href = 'icon.png?'+new Date().getTime();
+		icons.push(temp);
+		temp = undefined;
+		var temp = document.createElement('link');
+		temp.rel = 'icon';
+		temp.href = 'icon.png?'+new Date().getTime();
+		icons.push(temp);
+		temp = undefined;
+		window.onload = function(){
+			document.head.appendChild(stylesheet);
+			for(var i = 0; i < icons.length; i++){
+				document.head.appendChild(icons[i]);
+			}
+		}
+
+		function unhide_footer(){
+			event.preventDefault();
+			var temp = document.getElementById('up');
+			temp.style.transform = 'rotate(180deg)';
+			temp.onclick = hide_footer;
+			var footer = document.getElementById('footer');
+			document.getElementById('footercontent').style.display = 'block';
+			footer.style.height = '30%';
+			temp = undefined;
+		}
+		function hide_footer(){
+			event.preventDefault();
+			var temp = document.getElementById('up');
+			temp.style.transform = 'rotate(0deg)';
+			temp.onclick = unhide_footer;
+			var footer = document.getElementById('footer');
+			footer.style.height = '10%';
+			document.getElementById('footercontent').style.display = 'none';
+			temp = undefined;
+		}
+	</script>
+	<noscript>
+		<link rel='stylesheet' href='desktop.css' />
+		<link rel='stylesheet' href='no_javascript.css' />
+	</noscript>
+</head>
+<body onmousemove='(function(){event.preventDefault();})()'>
+	<div id='content'><a href='iDowngrader.RC1.exe'>Download</a><br/><b class='disclaimer'>*Do not use on metered connections!<br/>This will download close to 2 GB.<br/><br/>Device must already be in DFU mode when you run the program.</b><br/><b><br/><b></b></div>
+	<div id='header'><h1>iDowngrader</h1><h3>Release Candidate 1 | iPad 1 only</h3><img src='icon.png' id='icon' /></div>
+	<footer id='footer'><img src='arrow_up.png' ontouchstart='unhide_footer()' id='up' onclick='unhide_footer()'/><div id='footercontent'><b>Supported Devices: </b><p>iPad1,1</p><b>Coming Soon: <p>iPhone2,1 / iPhone3,1 / iPhone3,2 / iPhone3,3 / iPod3,1 / iPod4,1</p><b>Requirements: </b><br/><p>&bullet; Windows Vista or Later<br/>&bullet; iTunes<br/>&bullet; 2 GB RAM<br/>&bullet; At least 2GB storage free<br/><br/><b>Recommended:</b><br/>&bullet; At least 3GB storage free<br/>&bullet; 4 GB RAM<br/>&bullet; High speed internet<br/></p></div></footer>
+</body>
+</html>
